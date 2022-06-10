@@ -37,7 +37,7 @@ Acredito que a IBM tenha feito algo parecido ao criar o JWT. Não sei no entanto
 
 ---
 
-## Modelos & operações
+## Modelos e operações
 
 Modelos:
 
@@ -59,6 +59,8 @@ Modelos:
 | status (string)        |
 | valid (boolean)        |
 | identity (string)      |
+
+### Applying the models
 
 When adding a new token req:
 
