@@ -55,7 +55,7 @@ Modelos:
 
 | Token                               |
 |-------------------------------------|
-| req (ref[Requisition]               |
+| req (ref[Requisition])              |
 | status (string)                     |
 | valid (boolean)                     |
 | identity (string)                   |
