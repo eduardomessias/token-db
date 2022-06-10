@@ -52,6 +52,7 @@ Modelos:
 | timestamp (utc datetime)           |
 | content (blob)                     |
 | effectiveness (ref[Effectiveness]) |
+| push-back (URL)                    |
 
 | Token                  |
 | ---------------------- |
@@ -74,7 +75,8 @@ payload = {
             effectiveness: {
                 type: 'unlimited'|'usage'|'period',
                 expires: 'never'|<int>|<utc datetime>
-            }
+            },
+            pushBack: <URL>
         },
         status: pending,
         valid: false,
@@ -123,6 +125,27 @@ payload = {
         identity: <hash>
     }
 }
+```
+
+## Inbound operations
+
+```code
+<tokendb>/api/token/new
+<tokendb>/api/token/queue/size
+<tokendb>/api/token/queue(/:pg)
+<tokendb>/api/token/valid
+<tokendb>/api/token/status
+```
+
+## Outbound operations
+
+When requesting a new token, it is possible to define a push-back URL.
+The application will push the succeded token to the appointed URL, but no treatment or handling will be applied in case of exceptions.
+
+*The application will not hold responsibility over the push-back URL in any occasion whatsoever.*
+
+```code
+<tokendb>/api/token/new
 ```
 
 ---
