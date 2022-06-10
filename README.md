@@ -41,24 +41,24 @@ Acredito que a IBM tenha feito algo parecido ao criar o JWT. Não sei no entanto
 
 Modelos:
 
-| Requisition                         |
-|-------------------------------------|
-| id (hash)                           |
-| timestamp (utc datetime)            |
-| content (blob)                      |
-| effectiveness (ref[effectiveness])  |
-
 | Effectiveness                       |
-|-------------------------------------|
+| ----------------------------------- |
 | type (string)                       |
 | expires (utc datetime, int, string) |
 
-| Token                               |
-|-------------------------------------|
-| req (ref[Requisition])              |
-| status (string)                     |
-| valid (boolean)                     |
-| identity (string)                   |
+| Requisition                        |
+| ---------------------------------- |
+| id (hash)                          |
+| timestamp (utc datetime)           |
+| content (blob)                     |
+| effectiveness (ref[Effectiveness]) |
+
+| Token                  |
+| ---------------------- |
+| req (ref[Requisition]) |
+| status (string)        |
+| valid (boolean)        |
+| identity (string)      |
 
 When adding a new token req:
 
