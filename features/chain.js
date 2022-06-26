@@ -36,7 +36,7 @@ class Token {
     }
 }
 
-class Tokenchain {
+class TokenChain {
     constructor() {
         this.chain = [this.createGenesis()]
         this.difficulty = 5
@@ -52,11 +52,11 @@ class Tokenchain {
 
     addToken(token) {
         token.previousHash = this.lastToken().hash
-        this.mineToken(token)
+        this.createToken(token)
         this.chain.push(token)
     }
 
-    mineToken(token) {
+    createToken(token) {
         let tokenHashDifficulty = token.hash.substring(0, this.difficulty) // 'e.g: '00000'
         const difficultyArray = new Array(this.difficulty + 1).join('0') // e.g:'00000'
 
@@ -68,6 +68,7 @@ class Tokenchain {
         }
 
         console.log("Token created: " + token.hash)
+	return token
     }
 
     isValidChain() {
@@ -90,5 +91,5 @@ class Tokenchain {
 
 module.exports = {
     Token,
-    Tokenchain
+    TokenChain
 }

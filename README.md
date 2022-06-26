@@ -133,9 +133,15 @@ payload = {
 <tokendb>/api/token/new
 <tokendb>/api/token/queue/size
 <tokendb>/api/token/queue(/:pg)
-<tokendb>/api/token/valid
+<tokendb>/api/token/validate
 <tokendb>/api/token/status
 ```
+
+### Verificando se o token é valido
+
+É possível verificar se um token espefífico é válido fazendo uma consulta ao TokenDB. A resposta para esta consulta é válida por 10 minutos.
+
+Por ser um bloco na blockchain, o token possui uma validação própria que verifica, além de sua vigência, se o hash passado na consulta é igual ao resultado do cálculo do hash. Ou seja, para verificar se um token é válido, um recálculo de seu hash é feito e comparado com o hash passado na consulta. Se o resultado desse novo cálculo estiver correto e o token estiver vigente o resultado da consulta é um valor booleano TRUE. Do contrário FALSE.
 
 ## Outbound operations
 
