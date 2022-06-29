@@ -3,7 +3,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 
-import styles from '../../../styles/New.module.css'
+import RequestForm from '../../../components/RequestForm'
+
+
+import styles from '../../../styles/Request.module.css'
 
 
 export function getStaticProps() {
@@ -19,7 +22,7 @@ export function getStaticProps() {
 }
 
 
-export default function New({ token }) {
+export default function Request({ token }) {
     return (
         <div className={styles.container}>
             <Head>
@@ -40,7 +43,7 @@ export default function New({ token }) {
                 <p className={styles.description}>New request</p>
                 <div className={styles.grid}>
                     <section className={styles.card}>
-                        <form action="/api/token/request" method="post">
+                        {/* <form action="/api/token/request" method="post">
                             <label htmlFor="treqid" className={styles.label}>Request ID</label>
                             <input type="text" id="treqid" name="treqid" className={styles.input} value={token.id} readOnly />
 
@@ -51,7 +54,8 @@ export default function New({ token }) {
                             <textarea type="text" rows="2" id="tdata" name="tdata" className={styles.textarea} required></textarea>
 
                             <button type="submit" className={styles.button}>Submit request</button>
-                        </form>
+                        </form> */}
+                        <RequestForm />
                     </section>
                 </div>
                 <div className={styles.hero}>

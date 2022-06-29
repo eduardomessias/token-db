@@ -30,7 +30,7 @@ export default function Home() {
           <Link href="/token/queue">
             <a className={styles.card}>
               <h2>Read the book &rarr;</h2>
-              <p>It's all about transparency. Feel free to see queue of tokens we are maintaing.</p>
+              <p>It is all about transparency. Feel free to see queue of tokens we are maintaing.</p>
             </a>
           </Link>
 

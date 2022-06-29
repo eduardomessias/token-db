@@ -1,0 +1,133 @@
+.container {
+    padding: 0 2rem;
+}
+
+.main {
+    min-height: 90vh;
+    padding: 2rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    display: flex;
+    flex: 1;
+    padding: 1rem 0;
+    border-top: 1px solid #eaeaea;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.title a {
+    color: #0070f3;
+    text-decoration: none;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active {
+    text-decoration: underline;
+}
+
+.title {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.title:hover {
+    color: #0070f3;
+    text-decoration: underline;
+}
+
+.description {
+    font-size: 1rem;
+}
+
+.description {
+    border: 2px solid black;
+    margin-right: auto;
+    padding: .25rem;
+    background-color: #55804d;
+    color: white;
+    font-weight: bold;
+
+    transform: rotate(-5deg);
+
+    box-shadow: 5px 5px 1px 0 #000;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    padding: 1.5rem;
+    border: 2px solid #000000;
+    box-shadow: 10px 10px 1px 0 #000;
+    border-radius: 10px;
+    max-width: 480px;
+}
+
+.label {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.input {
+    margin: 0 0 .25rem 0;
+
+    width: 100%;
+    height: 1rem;
+
+    padding: 1rem;
+
+    border: 1px solid #CCC;
+    border-radius: 5px;
+}
+
+.textarea {
+    margin: 0 0 1rem 0;
+
+    width: 100%;
+
+    padding: .5rem;
+
+    border: 1px solid #111;
+    border-radius: 5px;
+}
+
+.button {
+    /* margin-top: 2rem; */
+    display: flex;
+    margin-left: auto;
+    padding: .5rem;
+
+    font-weight: bold;
+
+    background-color: #0070f3;
+    color: #FFF;
+    border: 2px solid #000;
+    border-radius: 5px;
+    box-shadow: 1px 6px 1px 0 #000;
+    transform: rotate(-1deg);
+}
+
+.logo {
+    height: 1em;
+    margin-left: 0.5rem;
+}
+
+
+.hero {
+    margin-top: 1rem;
+    margin-left: auto;
+}
