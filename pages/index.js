@@ -20,7 +20,7 @@ export default function Home() {
         <p className={styles.description}>Glad you are here!</p>
 
         <div className={styles.grid}>
-          <Link href="/token/new">
+          <Link href="/token/request">
             <a className={styles.card}>
               <h2>Request token &rarr;</h2>
               <p>Request a fresh token based on your meta definition and our timeline queue.</p>

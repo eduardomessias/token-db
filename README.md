@@ -1,43 +1,40 @@
 # Token DB
 
-Um token é um código.
+A token is a hash code.
 
-A composição do token é a seguinte:
+It is composed by:
 
-## Requisição
+### Request
 
-Cada requisição é única e contem um ID, um TimeStamp (que a torna única) e o conteúdo que posteriormente – após sua confirmação – será adicionado ao token.
+Each request is unique and contains an ID, a TimeStamp (which makes it unique) and the content that later - after being confirmed - will be added to the token.
 
-## Conteúdo
+### Content
 
-O conteúdo de um token pode ser duplicado, porque a requisição autentica sua originalidade. Os dados do conteúdo são criptografados em sha256.
+The content of a token can be duplicated because the request itself authentifies its originallity. The content data is encrypted using sha256.
 
-## Vigência
+### Effectiveness
 
-Ao requisitar um token, sua vigência pode ser determinada pelo requisitante, como “indeterminada”, “limitada ao uso” ou “limitada a um período”.
+When requesting a token, its effectiveness can be determined by the requesitioner, as "unlimited", "limited by usage" or "limited by time". 
 
-Caso a vigência seja indeterminada, o token não perderá sua validade enquanto a plataforma garantir sua efetividade. Caso a vigência seja limitada ao uso, o requisitante deve especificar a quantidade de vezes limite em que o token será considerado válido. No caso de vigência limitada a um período, o requisitante deve especificar uma data e hora limites para que o token seja considerado válido.
-
----
-
-## Premissas
-
-As requisições são adicionadas a uma fila.
-A estrutura de dados para armazenamento dos tokens é uma blockchain.
-O conteúdo de cada bloco minerado é um token.
-Quando o novo bloco contendo o token requisitado é adicionado à blockchain, a requisição é confirmada.
-Ao ser confirmada a requisição sai da fila e o código gerado a partir dela é entregue ao requisitante.
-A blockchain será armazenada em arquivo e, periodicamente, em um banco de dados.
-A blockchain será inserida no banco de dados em formato blob.
-Os token com vigência expirada serão mantidos na blockchain para auditoria futura.
-
-### Informações adicionais
-
-Acredito que a IBM tenha feito algo parecido ao criar o JWT. Não sei no entanto como eles armazenam os tokens.
+Case "unlimited", the token will not loose its validity for a lifetime, or as long as the platform can guarantee its eficiency. Case "limited by usage", the requisitioner must specify the quantity the token can be used before it is considered expired. Case "limited by time", the requisitioner must specify a date and time before the token can be considered expired. 
 
 ---
 
-## Modelos e operações
+## Assumptions
+
+The request is added to a queue.
+The data structure chosen to store the tokens is a blockchain.
+Each block mined is a new token.
+When the block is mined and added to the chain, the request is confirmed.
+When confirmed the request is dequeued and the generated hash code is returned to the requisitioner.
+The blockchain will be stored in file and periodically saved into a database.
+The blockchain will be stored in a blob format.
+The expired tokens will be kept in the blockchain for future audit.
+Maybe IBM has done something similar with JWT. It is worth to have a look as an inspiration.
+
+---
+
+## Models and Operations
 
 Modelos:
 
@@ -127,23 +124,23 @@ payload = {
 }
 ```
 
-## Inbound operations
+### Inbound operations
 
 ```code
-<tokendb>/api/token/new
+<tokendb>/api/token/request
 <tokendb>/api/token/queue/size
 <tokendb>/api/token/queue(/:pg)
 <tokendb>/api/token/validate
 <tokendb>/api/token/status
 ```
 
-### Verificando se o token é valido
+#### Checking if a token is valid
 
-É possível verificar se um token espefífico é válido fazendo uma consulta ao TokenDB. A resposta para esta consulta é válida por 10 minutos.
+It is possible to verify if a specific token is valid fetching the validate operation, by passing the hash as a parameter.
 
-Por ser um bloco na blockchain, o token possui uma validação própria que verifica, além de sua vigência, se o hash passado na consulta é igual ao resultado do cálculo do hash. Ou seja, para verificar se um token é válido, um recálculo de seu hash é feito e comparado com o hash passado na consulta. Se o resultado desse novo cálculo estiver correto e o token estiver vigente o resultado da consulta é um valor booleano TRUE. Do contrário FALSE.
+For being a block in a blockchain, the token already contains a valid method that verifies if its hash is valid. An additional verification is performed to check if the effectivenes is also valid and, if so, TRUE is the returned message. Otherwise, FALSE.
 
-## Outbound operations
+### Outbound operations
 
 When requesting a new token, it is possible to define a push-back URL.
 The application will push the succeded token to the appointed URL, but no treatment or handling will be applied in case of exceptions.
@@ -151,12 +148,12 @@ The application will push the succeded token to the appointed URL, but no treatm
 *The application will not hold responsibility over the push-back URL in any occasion whatsoever.*
 
 ```code
-<tokendb>/api/token/new
+<tokendb>/api/token/request
 ```
 
 ---
 
-## Tecnologia
+## Architecture
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -174,13 +171,5 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 Deployed on Vercel

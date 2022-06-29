@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 
-import styles from '../../styles/New.module.css'
+import styles from '../../../styles/New.module.css'
 
 
 export function getStaticProps() {
@@ -11,7 +11,6 @@ export function getStaticProps() {
         id: '0x23jfsllkjnlchbw38r7w9fhw8tr6wr6==',
         timestamp: new Date().toISOString().slice(0, 16),
     }
-
     return {
         props: {
             token
@@ -41,7 +40,7 @@ export default function New({ token }) {
                 <p className={styles.description}>New request</p>
                 <div className={styles.grid}>
                     <section className={styles.card}>
-                        <form action="/api/token/new" method="post">
+                        <form action="/api/token/request" method="post">
                             <label htmlFor="treqid" className={styles.label}>Request ID</label>
                             <input type="text" id="treqid" name="treqid" className={styles.input} value={token.id} readOnly />
 
