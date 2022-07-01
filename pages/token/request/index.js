@@ -2,27 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
-
-import RequestForm from '../../../components/RequestForm'
-
-
-import styles from '../../../styles/Request.module.css'
+import styles from '../../../styles/RequestPage.module.css'
+import RequestComponent from '../../../components/request'
 
 
-export function getStaticProps() {
-    const token = {
-        id: '0x23jfsllkjnlchbw38r7w9fhw8tr6wr6==',
-        timestamp: new Date().toISOString().slice(0, 16),
-    }
-    return {
-        props: {
-            token
-        }
-    }
-}
-
-
-export default function Request({ token }) {
+const RequestPage = () => {
     return (
         <div className={styles.container}>
             <Head>
@@ -43,19 +27,7 @@ export default function Request({ token }) {
                 <p className={styles.description}>New request</p>
                 <div className={styles.grid}>
                     <section className={styles.card}>
-                        {/* <form action="/api/token/request" method="post">
-                            <label htmlFor="treqid" className={styles.label}>Request ID</label>
-                            <input type="text" id="treqid" name="treqid" className={styles.input} value={token.id} readOnly />
-
-                            <label htmlFor="treqts" className={styles.label}>Timestamp</label>
-                            <input type="datetime-local" id="treqts" name="treqts" className={styles.input} value={token.timestamp} readOnly />
-
-                            <label htmlFor="tdata" className={styles.label}> Token data</label>
-                            <textarea type="text" rows="2" id="tdata" name="tdata" className={styles.textarea} required></textarea>
-
-                            <button type="submit" className={styles.button}>Submit request</button>
-                        </form> */}
-                        <RequestForm />
+                        <RequestComponent />
                     </section>
                 </div>
                 <div className={styles.hero}>
@@ -65,3 +37,6 @@ export default function Request({ token }) {
         </div >
     )
 }
+
+
+export default RequestPage

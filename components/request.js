@@ -1,4 +1,4 @@
-import styles from './RequestForm.module.css'
+import styles from './request.module.css'
 
 
 const token = {
@@ -7,7 +7,7 @@ const token = {
 }
 
 
-const RequestForm = () => {
+const RequestComponent = () => {
     return (
         <form action="/token/request/confirm" method="post">
             <label htmlFor="treqid" className={styles.label}>Request ID</label>
@@ -24,4 +24,4 @@ const RequestForm = () => {
     )
 }
 
-export default RequestForm
+export default RequestComponent
