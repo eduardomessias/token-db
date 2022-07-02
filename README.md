@@ -4,19 +4,19 @@ A token is a hash code.
 
 It is composed by:
 
-### Request
+## Request
 
 Each request is unique and contains an ID, a TimeStamp (which makes it unique) and the content that later - after being confirmed - will be added to the token.
 
-### Content
+## Content
 
-The content of a token can be duplicated because the request itself authentifies its originallity. The content data is encrypted using sha256.
+The content of a token can be duplicated because the request itself authenticates its originality. The content data is encrypted using SHA256.
 
-### Effectiveness
+## Effectiveness
 
-When requesting a token, its effectiveness can be determined by the requesitioner, as "unlimited", "limited by usage" or "limited by time". 
+When requesting a token, its effectiveness can be determined by the requisitioner, as "unlimited", "limited by usage" or "limited by time".
 
-Case "unlimited", the token will not loose its validity for a lifetime, or as long as the platform can guarantee its eficiency. Case "limited by usage", the requisitioner must specify the quantity the token can be used before it is considered expired. Case "limited by time", the requisitioner must specify a date and time before the token can be considered expired. 
+Case "unlimited", the token will not loose its validity for a lifetime, or as long as the platform can guarantee its efficiency. Case "limited by usage", the requisitioner must specify the quantity the token can be used before it is considered expired. Case "limited by time", the requisitioner must specify a date and time before the token can be considered expired.
 
 ---
 
@@ -36,20 +36,20 @@ Maybe IBM has done something similar with JWT. It is worth to have a look as an 
 
 ## Models and Operations
 
-Modelos:
+Models:
 
-| Effectiveness                       |
+| Effectiveness                        |
+| ------------------------------------ |
+| type (string)                        |
+| expires (UTC date-time, int, string) |
+
+| Requisition                         |
 | ----------------------------------- |
-| type (string)                       |
-| expires (utc datetime, int, string) |
-
-| Requisition                        |
-| ---------------------------------- |
-| id (hash)                          |
-| timestamp (utc datetime)           |
-| content (blob)                     |
-| effectiveness (ref[Effectiveness]) |
-| push-back (URL)                    |
+| id (hash)                           |
+| timestamp (UTC date-time)           |
+| content (blob)                      |
+| effectiveness (ref[Effectiveness])  |
+| push-back (URL)                     |
 
 | Token                  |
 | ---------------------- |
@@ -138,12 +138,12 @@ payload = {
 
 It is possible to verify if a specific token is valid fetching the validate operation, by passing the hash as a parameter.
 
-For being a block in a blockchain, the token already contains a valid method that verifies if its hash is valid. An additional verification is performed to check if the effectivenes is also valid and, if so, TRUE is the returned message. Otherwise, FALSE.
+For being a block in a blockchain, the token already contains a valid method that verifies if its hash is valid. An additional verification is performed to check if the effectiveness is also valid and, if so, TRUE is the returned message. Otherwise, FALSE.
 
 ### Outbound operations
 
 When requesting a new token, it is possible to define a push-back URL.
-The application will push the succeded token to the appointed URL, but no treatment or handling will be applied in case of exceptions.
+The application will push the succeeded token to the appointed URL, but no treatment or handling will be applied in case of exceptions.
 
 *The application will not hold responsibility over the push-back URL in any occasion whatsoever.*
 
@@ -155,7 +155,7 @@ The application will push the succeded token to the appointed URL, but no treatm
 
 ## Architecture
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.JS](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
@@ -171,5 +171,4 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-
-Deployed on Vercel
+Deployed on VERCEL

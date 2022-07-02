@@ -94,6 +94,20 @@
     border-radius: 5px;
 }
 
+.select {
+    margin: 0 0 .25rem 0;
+
+    width: 100%;
+    height: 1rem;
+
+    padding: 1rem;
+
+    border: 1px solid #CCC;
+    border-radius: 5px;
+
+    color: #000;
+}
+
 .textarea {
     margin: 0 0 1rem 0;
 
