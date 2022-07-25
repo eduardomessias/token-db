@@ -6,17 +6,6 @@ import Image from 'next/image'
 import styles from '../../../styles/RequestConfirmPage.module.css'
 
 
-export async function getStaticProps() {
-    
-
-    return {
-        props: {
-
-        }
-    }
-}
-
-
 const RequestConfirmPage = () => {
     return (
         <div className={styles.container}>

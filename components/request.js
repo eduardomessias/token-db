@@ -20,7 +20,7 @@ const token = {
 
 const RequestComponent = () => {
     return (
-        <form action="/token/request/confirm" method="post">
+        <form action="/api/token/request/" method="post">
             <label htmlFor="tokenRequestId" className={styles.label}>Request ID</label>
             <input type="text" id="tokenRequestID" name="tokenRequestID" className={styles.input} value={token.req.id} readOnly />
 
@@ -31,16 +31,19 @@ const RequestComponent = () => {
             <textarea type="text" rows="2" id="tokenRequestContent" name="tokenRequestContent" className={styles.textarea} defaultValue={token.req.content} required></textarea>
 
             <label htmlFor="tokenRequestEffectivenessType" className={styles.label}>Effectiveness</label>
-            <select id="tokenRequestEffectivenessType" name="tokenRequestEffectivenessType" className={styles.select} defaultValue={token.req.effectiveness.type}>
+            {/* <select id="tokenRequestEffectivenessType" name="tokenRequestEffectivenessType" className={styles.select}>
                 <option value="unlimited">Unlimited</option>
                 <option value="limitedByUsage">Limited by usage</option>
                 <option value="limitedByTime">Limited by time</option>
+            </select> */}
+            <select id="tokenRequestEffectivenessType" name="tokenRequestEffectivenessType">
+            <option value="unlimited">Unlimited</option>
             </select>
 
             <label id="tokenRequestEffectivenessExpires" htmlFor="tokenRequestEffectivenessExpires" className={styles.label}>Expires</label>
             <input type="text" id="tokenRequestEffectivenessExpires" name="tokenRequestEffectivenessExpires" className={styles.input} defaultValue={token.req.effectiveness.expires} placeholder="Never" readOnly />
-            <input type="number" id="tokenRequestEffectivenessExpires" name="tokenRequestEffectivenessExpires" className={styles.input} defaultValue={token.req.effectiveness.expires} placeholder="0" />
-            <input type="datetime-local" id="tokenRequestEffectivenessExpires" name="tokenRequestEffectivenessExpires" className={styles.input} defaultValue={token.req.effectiveness.expires} />
+            {/* <input type="number" id="tokenRequestEffectivenessExpires" name="tokenRequestEffectivenessExpires" className={styles.input} defaultValue={token.req.effectiveness.expires} placeholder="0" />
+            <input type="datetime-local" id="tokenRequestEffectivenessExpires" name="tokenRequestEffectivenessExpires" className={styles.input} defaultValue={token.req.effectiveness.expires} /> */}
 
             <label htmlFor="tokenRequestPushBack" className={styles.label}>Push back</label>
             <input type="text" id="tokenRequestPushBack" name="tokenRequestPushBack" className={styles.input} defaultValue={token.req.pushBack} />
