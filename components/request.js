@@ -22,10 +22,10 @@ const RequestComponent = () => {
     return (
         <form action="/api/token/request/" method="post">
             <label htmlFor="tokenRequestId" className={styles.label}>Request ID</label>
-            <input type="text" id="tokenRequestID" name="tokenRequestID" className={styles.input} value={token.req.id} readOnly />
+            <input type="text" id="tokenRequestId" name="tokenRequestId" className={styles.input} value={token.req.id} readOnly />
 
-            <label htmlFor="tokenRequestTimeStamp" className={styles.label}>Timestamp</label>
-            <input type="datetime-local" id="tokenRequestTimeStamp" name="tokenRequestTimestamp" className={styles.input} value={token.req.timestamp.toISOString().slice(0, 16)} readOnly />
+            <label htmlFor="tokenRequestTimestamp" className={styles.label}>Timestamp</label>
+            <input type="datetime-local" id="tokenRequestTimestamp" name="tokenRequestTimestamp" className={styles.input} value={token.req.timestamp.toISOString().slice(0, 16)} readOnly />
 
             <label htmlFor="tokenRequestContent" className={styles.label}> Token data</label>
             <textarea type="text" rows="2" id="tokenRequestContent" name="tokenRequestContent" className={styles.textarea} defaultValue={token.req.content} required></textarea>
@@ -36,8 +36,8 @@ const RequestComponent = () => {
                 <option value="limitedByUsage">Limited by usage</option>
                 <option value="limitedByTime">Limited by time</option>
             </select> */}
-            <select id="tokenRequestEffectivenessType" name="tokenRequestEffectivenessType">
-            <option value="unlimited">Unlimited</option>
+            <select id="tokenRequestEffectivenessType" name="tokenRequestEffectivenessType" defaultValue="unlimited">
+                <option value="unlimited">Unlimited</option>
             </select>
 
             <label id="tokenRequestEffectivenessExpires" htmlFor="tokenRequestEffectivenessExpires" className={styles.label}>Expires</label>
