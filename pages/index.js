@@ -36,7 +36,7 @@ export default function Home() {
 
           <Link href="/token/examples">
             <a className={styles.card}>
-              <h2>Docs & Examples &rarr;</h2>
+              <h2>Docs & Samples &rarr;</h2>
               <p>Explore a few token examples we have.</p>
               <p>Not sure how this works? No problem, run through the docs, they will help you master it.</p>
             </a>

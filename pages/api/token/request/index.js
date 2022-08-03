@@ -40,9 +40,9 @@ export default function handler(req, res) {
 
     console.log('Token request received: ', JSON.stringify(body))
 
-    const validationBodyResult = validateBody(body)
+    const bodyValidationResult = validateBody(body)
 
-    if (!validationBodyResult.isValid) {
+    if (!bodyValidationResult.isValid) {
         return res.status(400).json({ data: validationBodyResult.log })
     }
 
