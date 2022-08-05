@@ -16,48 +16,7 @@ export interface TokenRequestValidationResult {
     reasons: Array<String>
 }
 
-export function validateBody(tokenRequest: TokenRequest): TokenRequestValidationResult {
-    let validationResult: TokenRequestValidationResult = {
-        isValid: true,
-        reasons: []
-    }
-
-    if (!tokenRequest.id) {
-        validationResult.isValid = false
-        validationResult.reasons.push('ID was not assigned')
-    }
-
-    if (validationResult.isValid && !tokenRequest.timestamp) {
-        validationResult.isValid = false
-        validationResult.reasons.push('Timestamp was not assigned')
-    }
-
-    if (validationResult.isValid && !tokenRequest.content) {
-        validationResult.isValid = false
-        validationResult.reasons.push('Content was not assigned')
-    }
-
-    if (validationResult.isValid && !tokenRequest.effectiveness.type) {
-        validationResult.isValid = false
-        validationResult.reasons.push('Effectiveness type was not assigned')
-    }
-
-    if (validationResult.isValid && !tokenRequest.effectiveness.expires) {
-        validationResult.isValid = false
-        validationResult.reasons.push('Effectiveness expires was not assigned')
-    }
-
-    if (validationResult.isValid && !tokenRequest.pushBack) {
-        validationResult.isValid = false
-        validationResult.reasons.push('Push-back was not assigned')
-    }
-
-    return validationResult
-}
-
-export default function handler(req, res) {
-    const body = req.body
-
+export function parseBody(body: any): TokenRequest {
     const tokenRequest: TokenRequest = {
         id: body.tokenRequestId,
         timestamp: body.tokenRequestTimestamp,
@@ -69,6 +28,51 @@ export default function handler(req, res) {
         pushBack: body.tokenRequestPushBack
     }
 
+    return tokenRequest
+}
+
+export function validateBody(tokenRequest: TokenRequest): TokenRequestValidationResult {
+    let validationResult: TokenRequestValidationResult = {
+        isValid: true,
+        reasons: []
+    }
+
+    if (!tokenRequest.id) {
+        validationResult.isValid = false
+        validationResult.reasons.push('ID was not assigned')
+    }
+
+    if (!tokenRequest.timestamp) {
+        validationResult.isValid = false
+        validationResult.reasons.push('Timestamp was not assigned')
+    }
+
+    if (!tokenRequest.content) {
+        validationResult.isValid = false
+        validationResult.reasons.push('Content was not assigned')
+    }
+
+    if (!tokenRequest.effectiveness.type) {
+        validationResult.isValid = false
+        validationResult.reasons.push('Effectiveness type was not assigned')
+    }
+
+    if (!tokenRequest.effectiveness.expires) {
+        validationResult.isValid = false
+        validationResult.reasons.push('Effectiveness expires was not assigned')
+    }
+
+    if (!tokenRequest.pushBack) {
+        validationResult.isValid = false
+        validationResult.reasons.push('Push-back was not assigned')
+    }
+
+    return validationResult
+}
+
+export default function handler(req, res) {
+    const body = req.body
+    const tokenRequest = parseBody(body)
     const validationResult = validateBody(tokenRequest)
 
     if (!validationResult.isValid) {
@@ -79,7 +83,7 @@ export default function handler(req, res) {
 
     // IF SUCCESS
     res.redirect("/token/request/confirm")
-    
+
     // ELSE
     //res.status(200).json({ data: `Token request ${body.tokenRequestId} received at ${body.tokenRequestTimestamp} and added to the queue` })
 }
