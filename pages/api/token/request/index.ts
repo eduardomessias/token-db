@@ -1,5 +1,5 @@
-import { TokenRequest } from "../../../../core/types/tokenRequest"
-import { TokenRequestValidationResult } from "../../../../core/types/tokenRequestValidationResult"
+import { TokenRequest } from "../../../../core/interfaces/token.request.interface"
+import { TokenRequestValidationResult } from "../../../../core/interfaces/tokenRequestValidationResult"
 
 export function parseBody(body: any): TokenRequest {
     const tokenRequest: TokenRequest = {
