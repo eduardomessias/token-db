@@ -1,20 +1,5 @@
-export interface TokenRequestEffectiveness {
-    type: String,
-    expires: String | Date | Number
-}
-
-export interface TokenRequest {
-    id: String,
-    timestamp: Date,
-    content: any,
-    effectiveness: TokenRequestEffectiveness,
-    pushBack: String
-}
-
-export interface TokenRequestValidationResult {
-    isValid: Boolean,
-    reasons: Array<String>
-}
+import { TokenRequest } from "../../../../core/types/tokenRequest"
+import { TokenRequestValidationResult } from "../../../../core/types/tokenRequestValidationResult"
 
 export function parseBody(body: any): TokenRequest {
     const tokenRequest: TokenRequest = {
@@ -27,7 +12,6 @@ export function parseBody(body: any): TokenRequest {
         },
         pushBack: body.tokenRequestPushBack
     }
-
     return tokenRequest
 }
 
