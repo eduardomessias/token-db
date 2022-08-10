@@ -6,6 +6,9 @@ import Link from 'next/link'
 import styles from '../../../styles/Queue.module.css'
 
 
+import { useState, useMemo } from 'react'
+
+
 export async function getStaticProps() {
     const res = await fetch("http://localhost:3000/api/token/queue")
     const json = await res.json()
@@ -20,6 +23,11 @@ export async function getStaticProps() {
 
 
 export default function Queue({ queue, err }) {
+    // const [filter, setFilter] = useState()
+    // const filteredQueue = useMemo(
+        
+    // )
+
     return (
         <div className={styles.container}>
             <Head>

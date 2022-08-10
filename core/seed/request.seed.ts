@@ -10,6 +10,6 @@ export function seedRequest (): Request {
             type: EffectivenessType.Unlimited,
             expires: 'never'
         },
-        pushBack: 'https://localhost:3000/token/request/confirm'
+        pushBack: ''
     }
 }
