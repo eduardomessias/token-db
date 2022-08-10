@@ -33,7 +33,7 @@ export function validateBody(request: Request): ValidationResult {
     }
 
     if (!request.pushBack) {
-        validationResult.isValid = false
+        validationResult.isValid = true
         validationResult.reasons.push('Push-back was not assigned')
     }
 

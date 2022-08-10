@@ -6,5 +6,7 @@ export interface Request {
     timestamp: Date,
     content: any,
     effectiveness: Effectiveness,
-    pushBack: string
+    pushBack: string,
+
+    calcHash(): string
 }

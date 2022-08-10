@@ -13,16 +13,25 @@
 //     valid: false,
 //     identity: null|<hash>
 // }
-
+import { TokenStatus } from '../enums/tokenStatus.enum'
+import { Request } from '../interfaces/request.interface'
+import {Token as IToken} from '../interfaces/token.interface'
 const SHA256 = require('crypto-js/sha256')
 
-class Token {
+class Token implements IToken {
+    req: Request
+    previous: string
+    hash: string
+    nonce: number
+    status: TokenStatus
+    isValid: boolean
+
     constructor(req, previousHash = '') {
         this.req = req
         this.previous = previousHash
         this.hash = this.calcHash()
         this.nonce = 0
-        this.status = 'pending'
+        this.status = TokenStatus.Pending
         this.valid = false
         this.identity = null
     }

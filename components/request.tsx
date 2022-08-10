@@ -1,8 +1,7 @@
-import { Token } from '../core/interfaces/token.interface'
-import { seedToken } from '../core/seed/token.seed'
+import { Token } from '../core/classes/token.class'
 import styles from './request.module.css'
 
-const token: Token = seedToken()
+const token: Token = new Token()
 const rows: number = 2
 
 const RequestComponent = () => {

@@ -8,7 +8,7 @@ export default function handler(req, res) {
     const validationResult = validateBody(tokenRequest)
 
     if (!validationResult.isValid) {
-        return res.status(400).json({ reasons: validationResult.reasons })
+        return res.status(400).json({ validated: validationResult.isValid, reasons: validationResult.reasons })
     }
 
     console.log('Token request received: ', JSON.stringify(tokenRequest))
