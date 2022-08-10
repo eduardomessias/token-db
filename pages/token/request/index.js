@@ -6,15 +6,27 @@ import BrandComponent from '../../../components/brand'
 
 import Image from 'next/image'
 
+import { createRequest } from '../../../core/factory/request.factory'
 
-const RequestPage = () => {
+export function getStaticProps() {
+    const request = JSON.stringify(createRequest())
+
+    return {
+        props: {
+            request
+        }
+    }
+}
+
+
+const RequestPage = ({request}) => {  
     return (
         <PageComponent title="Token database - request token">
             <BrandComponent />
             <p className={styles.description}>New request</p>
             <div className={styles.grid}>
                 <section className={styles.card}>
-                    <RequestComponent />
+                    <RequestComponent template={request} />
                 </section>
             </div>
             <div className={styles.hero}>
