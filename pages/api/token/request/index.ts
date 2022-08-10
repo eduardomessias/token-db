@@ -1,62 +1,10 @@
-import { TokenRequest } from "../../../../core/token.request.interface"
-import { TokenRequestValidationResult } from "../../../../core/token.request.validation.result.interface"
+import { parseRequestBody } from '../../../../core/parse/request.parse'
+import { validateBody } from '../../../../core/validate/request.validate'
 
-export function parseBody(body: any): TokenRequest {
-    const tokenRequest: TokenRequest = {
-        id: body.tokenRequestId,
-        timestamp: body.tokenRequestTimestamp,
-        content: body.tokenRequestContent,
-        effectiveness: {
-            type: body.tokenRequestEffectivenessType,
-            expires: body.tokenRequestEffectivenessExpires
-        },
-        pushBack: body.tokenRequestPushBack
-    }
-    return tokenRequest
-}
-
-export function validateBody(tokenRequest: TokenRequest): TokenRequestValidationResult {
-    let validationResult: TokenRequestValidationResult = {
-        isValid: true,
-        reasons: []
-    }
-
-    if (!tokenRequest.id) {
-        validationResult.isValid = false
-        validationResult.reasons.push('ID was not assigned')
-    }
-
-    if (!tokenRequest.timestamp) {
-        validationResult.isValid = false
-        validationResult.reasons.push('Timestamp was not assigned')
-    }
-
-    if (!tokenRequest.content) {
-        validationResult.isValid = false
-        validationResult.reasons.push('Content was not assigned')
-    }
-
-    if (!tokenRequest.effectiveness.type) {
-        validationResult.isValid = false
-        validationResult.reasons.push('Effectiveness type was not assigned')
-    }
-
-    if (!tokenRequest.effectiveness.expires) {
-        validationResult.isValid = false
-        validationResult.reasons.push('Effectiveness expires was not assigned')
-    }
-
-    if (!tokenRequest.pushBack) {
-        validationResult.isValid = false
-        validationResult.reasons.push('Push-back was not assigned')
-    }
-
-    return validationResult
-}
 
 export default function handler(req, res) {
     const body = req.body
-    const tokenRequest = parseBody(body)
+    const tokenRequest = parseRequestBody(body)
     const validationResult = validateBody(tokenRequest)
 
     if (!validationResult.isValid) {

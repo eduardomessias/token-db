@@ -1,4 +1,4 @@
-export interface TokenRequestValidationResult {
+export interface ValidationResult {
     isValid: Boolean,
     reasons: Array<String>
 }
