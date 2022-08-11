@@ -1,6 +1,6 @@
 import { EffectivenessType } from "../enums/effectivenessType.enum"
 import { createHash } from "../factory/hash.factory"
-import { Request as IRequest } from "../interfaces/request.interface"
+import { IRequest } from "../interfaces/request.interface"
 import { Effectiveness } from "./effectiveness.class"
 
 
