@@ -1,6 +1,6 @@
 import { EffectivenessType } from "../enums/effectivenessType.enum";
 
-export interface Effectiveness {
+export interface IEffectiveness {
     type: EffectivenessType,
     expires: any
 }

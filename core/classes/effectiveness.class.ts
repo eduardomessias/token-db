@@ -1,5 +1,5 @@
 import { EffectivenessType } from '../enums/effectivenessType.enum'
-import { Effectiveness as IEffectiveness } from '../interfaces/effectiveness.interface'
+import { IEffectiveness } from '../interfaces/effectiveness.interface'
 
 export class Effectiveness implements IEffectiveness {
     type: EffectivenessType

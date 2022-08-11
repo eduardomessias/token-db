@@ -1,12 +1,11 @@
-import { Token } from "./token.interface"
+import { IToken } from "./token.interface"
 
-export interface Chain {
-    chain: Array<Token>,
+export interface IChain {
+    chain: Array<IToken>,
     difficulty: number,
-
-    createGenesis(): Token,
-    last(): Token,
-    add(t: Token): void,
-    mineToken(t: Token): Token,
+    createGenesis(): IToken,
+    last(): IToken,
+    add(t: IToken): void,
+    mine(t: IToken): IToken,
     validate(): Boolean
 }

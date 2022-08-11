@@ -1,12 +1,11 @@
-import { Effectiveness } from "./effectiveness.interface"
+import { IEffectiveness } from "./effectiveness.interface"
 
 
-export interface Request {
+export interface IRequest {
     id: string,
     timestamp: Date,
     content: any,
-    effectiveness: Effectiveness,
+    effectiveness: IEffectiveness,
     pushBack: string,
-
     calcHash(): string
 }

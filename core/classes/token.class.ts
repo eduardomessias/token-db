@@ -1,20 +1,20 @@
 import { TokenStatus } from "../enums/tokenStatus.enum";
 import { createHash } from "../factory/hash.factory";
-import { Token as IToken } from "../interfaces/token.interface";
-import { Request } from "./request.class";
+import { IToken } from "../interfaces/token.interface";
+import { IRequest } from "../interfaces/request.interface";
 
 export class Token implements IToken {
     previous: string
     hash: string
-    req: Request
+    req: IRequest
     status: TokenStatus
     isValid: boolean
     identity: string
     nonce: number
 
-    constructor(previous: string = "", req: Request = null) {
+    constructor(previous: string = "", req: IRequest = null) {
         this.previous = previous
-        this.req = req || new Request()
+        this.req = req
         this.status = TokenStatus.Pending
         this.isValid = false
         this.identity = null

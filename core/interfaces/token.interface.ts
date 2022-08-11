@@ -1,15 +1,14 @@
 import { TokenStatus } from "../enums/tokenStatus.enum";
-import { Request } from "./request.interface";
+import { IRequest } from "./request.interface";
 
-export interface Token {
+export interface IToken {
     previous: string,
     hash: string,
-    req: Request,
+    req: IRequest,
     status: TokenStatus,
     isValid: boolean,
     identity: string,
     nonce: number
-
     calcHash(): string,
     validate(): boolean
 }

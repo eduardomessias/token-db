@@ -1,9 +1,9 @@
 import { createToken } from '../factory/token.factory'
-import {Chain as IChain} from '../interfaces/chain.interface'
-import { Token } from '../interfaces/token.interface'
+import { IChain } from '../interfaces/chain.interface'
+import { IToken } from '../interfaces/token.interface'
 
 export class Chain implements IChain {
-    chain: Array<Token>
+    chain: Array<IToken>
     difficulty: number
 
     constructor(difficulty: number = 5) {
@@ -11,21 +11,21 @@ export class Chain implements IChain {
         this.chain = [this.createGenesis()]
     }
 
-    createGenesis(): Token {
+    createGenesis(): IToken {
         return createToken()
     }
 
-    last(): Token {
+    last(): IToken {
         return this.chain[this.chain.length - 1]
     }
 
-    add(t: Token): void {
+    add(t: IToken): void {
         t.previous = this.last().hash
-        this.mineToken(t)
+        this.mine(t)
         this.chain.push(t)
     }
 
-    mineToken(t: Token): Token {
+    mine(t: IToken): IToken {
         let tokenDiffSet: string = t.hash.substring(0, this.difficulty)
         let chainDiffSet: string = new Array(this.difficulty + 1).join(tokenDiffSet)
         while (tokenDiffSet !== chainDiffSet) {
