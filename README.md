@@ -158,7 +158,7 @@ The application will push the succeeded token to the appointed URL, but no treat
 ### Class diagram
 Interfaces
 
-![Interfaces diagram]("docs/anex/TokenDB interfaces.svg?raw=true "Interfaces diagram")
+![Interfaces diagram]("https://github.com/eduardomessias/token-db/docs/anex/TokenDB%20interfaces.svg")
 
 
 This is a [Next.JS](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
