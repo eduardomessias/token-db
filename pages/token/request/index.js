@@ -6,31 +6,17 @@ import BrandComponent from '../../../components/brand'
 import Image from 'next/image'
 import { createRequest } from '../../../core/factory/request.factory'
 
-export function getRequest() {
-    //TODO: make this work
-    // return fetch("https://eduardomessias-tokendb-z0antxh7w7s.ws-eu59.gitpod.io/api/token/request/new")
-    //     .then(res => res.json())
+const RequestPage = ({template, reason}) => {
 
-    return JSON.stringify(createRequest())
-}
-
-export function getStaticProps() {
-    return {
-        props: {
-            request: getRequest()
-        }
-    }
-}
-
-
-const RequestPage = ({request}) => {  
+    if (reason) console.log(reason)
+        
     return (
         <PageComponent title="Token database - request token">
             <BrandComponent />
             <p className={styles.description}>New request</p>
             <div className={styles.grid}>
                 <section className={styles.card}>
-                    <RequestComponent template={request} />
+                    <RequestComponent template={template} />
                 </section>
             </div>
             <div className={styles.hero}>
@@ -42,3 +28,16 @@ const RequestPage = ({request}) => {
 
 
 export default RequestPage
+
+
+export async function getServerSideProps(context) {
+    const res = await fetch("http://localhost:3000/api/token/request/new")
+    const template = await res.json()
+
+    return {
+        props: {
+            template: JSON.stringify(createRequest())
+        }
+    }
+}
+

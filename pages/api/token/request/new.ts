@@ -4,5 +4,5 @@ import { NextApiRequest, NextApiResponse } from "../../../../node_modules/next/d
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const request: IRequest = createRequest()
-    res.status(200).json(request)
+    res.status(200).json({request: request})
 }
