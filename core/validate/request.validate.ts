@@ -1,11 +1,9 @@
-import { Request } from "../interfaces/request.interface"
-import { ValidationResult } from "../interfaces/validationResult.interface"
+import { createValidationResult } from "../factory/validationResult.factory"
+import { IRequest } from "../interfaces/request.interface"
+import { IValidationResult } from "../interfaces/validationResult.interface"
 
-export function validateBody(request: Request): ValidationResult {
-    let validationResult: ValidationResult = {
-        isValid: true,
-        reasons: []
-    }
+export function validateBody(request: IRequest): IValidationResult {
+    let validationResult: IValidationResult = createValidationResult()
 
     if (!request.id) {
         validationResult.isValid = false
