@@ -1,10 +1,10 @@
 import styles from '../../../styles/RequestPage.module.css'
 import PageComponent from '../../../components/page'
-import RequestComponent from '../../../components/request'
+import RequestComponent from '../../../components/request.component'
 import BrandComponent from '../../../components/brand'
 
 import Image from 'next/image'
-import { createRequest } from '../../../core/factory/request.factory'
+
 
 const RequestPage = ({template, reason}) => {
 
@@ -36,7 +36,7 @@ export async function getServerSideProps(context) {
 
     return {
         props: {
-            template: JSON.stringify(createRequest())
+            template: template.request
         }
     }
 }
