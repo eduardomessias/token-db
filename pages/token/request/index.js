@@ -1,5 +1,5 @@
 import styles from '../../../styles/RequestPage.module.css'
-import PageComponent from '../../../components/page'
+import PageComponent from '../../../components/layout.component'
 import RequestComponent from '../../../components/request.component'
 import BrandComponent from '../../../components/brand'
 

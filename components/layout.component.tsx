@@ -1,10 +1,14 @@
-import styles from './page.module.css'
+import styles from './layout.module.css'
 
 
 import Head from 'next/head'
 
+type Props = {
+    title: string
+    children: any
+}
 
-const PageComponent = ({ title = "Token database", children }) => {
+const LayoutComponent = ({ title = "Token database", children }: Props) => {
     return (
         <div className={styles.container}>
             <Head>
@@ -14,10 +18,10 @@ const PageComponent = ({ title = "Token database", children }) => {
             </Head>
             <main className={styles.main}>
                 {children}
-            </main >
-        </div >
+            </main>
+        </div>
     )
 }
 
 
-export default PageComponent
+export default LayoutComponent

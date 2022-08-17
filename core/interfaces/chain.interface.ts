@@ -1,11 +1,16 @@
-import { IToken } from "./token.interface"
+import { IBlock } from "./block.interface"
+import { IRequest } from "./request.interface"
 
 export interface IChain {
-    chain: Array<IToken>,
+    chain: Array<IBlock>,
     difficulty: number,
-    createGenesis(): IToken,
-    last(): IToken,
-    add(t: IToken): void,
-    mine(t: IToken): IToken,
+    queue: Array<IRequest>,
+    reward: number,
+    lastAt: Date,
+    lastIndex: number,
+    createGenesis(): IBlock,
+    last(): IBlock,
+    add(t: IBlock): void,
+    mine(t: IBlock): IBlock,
     validate(): Boolean
 }

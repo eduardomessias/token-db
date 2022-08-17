@@ -13,6 +13,9 @@ export default function handler(req, res) {
 
     console.log('Token request received: ', JSON.stringify(tokenRequest))
 
+    // TODO: RETRIEVE THE STATE OF THE CHAIN
+    // TODO: ENQUEUE REQUEST
+
     // IF SUCCESS
     res.redirect("/token/request/confirm")
 
