@@ -35,8 +35,8 @@ const RequestConfirmPage = () => {
                 <div className={styles.hero}>
                     <Image src="/images/undraw_phone_call_re_hx6a.svg" alt="security on image" width={260} height={220} />
                 </div>
-            </main >
-        </div >
+            </main>
+        </div>
     )
 }
 

@@ -6,6 +6,7 @@ import { Token } from './token.class'
 import { IRequest } from '../interfaces/request.interface'
 import { Request } from './request.class'
 import { Block } from './block.class'
+import { TokenStatus } from '../enums/tokenStatus.enum'
 
 export class Chain implements IChain {
     chain: Array<IBlock>
@@ -46,12 +47,18 @@ export class Chain implements IChain {
         return this.chain.length
     }
 
+    // This will be called assynchronously
     minePending() {
         let tokens: Array<IToken> = this.queue.map((request: IRequest) => {
             return new Token(request)
         })
         let block: IBlock = new Block(new Date(), tokens)
         this.add(block)
+
+        for (let token of block.tokens) {
+            token.status = TokenStatus.Success
+        }
+
         this.resetQueue()
     }
 
@@ -60,23 +67,33 @@ export class Chain implements IChain {
     }
 
     enqueue(r: IRequest) {
-        this.queue.push(r)
-
-        // TODO: RETURN THE REQUEST ENQUEUE CONFIRMATION
-        // TODO: ASSYNCHRONOUSLY CALL MINE PENDING
+        this.queue.push(r)    
     }
 
+    // TODO: RETURN THE REQUEST ENQUEUE CONFIRMATION
+    // TODO: ASSYNCHRONOUSLY CALL MINE PENDING
+
     mine(t: IBlock): IBlock {
+
+        // BLOCK HASH = 0eff2e4f4ce2411de17895026320f790
+        // BLOCK LEFT HASH = "0eff2"
         let blockLeftHash: string = t.hash.substring(0, this.difficulty)
-        let chainLeftHash: string = new Array(this.difficulty + 1).join(blockLeftHash)
+        
+        // CHAIN LEFT HASH = 00000
+        let chainLeftHash: string = new Array(this.difficulty).fill("0").join("") // "00000"
+        
+        
         while (blockLeftHash !== chainLeftHash) {
             t.nonce++
             t.hash = t.calcHash()
             blockLeftHash = t.hash.substring(0, this.difficulty)
         }
+
         this.lastIndex = this.size() - 1
         this.lastAt = new Date()
+
         console.log(`Block ${this.lastIndex} mined at ${this.lastAt}`)
+
         return t
     }
 

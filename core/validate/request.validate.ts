@@ -30,8 +30,7 @@ export function validateBody(request: IRequest): IValidationResult {
         validationResult.reasons.push('Effectiveness expires was not assigned')
     }
 
-    if (!request.pushBack) {
-        validationResult.isValid = true
+    if (!request.pushBack) {        
         validationResult.reasons.push('Push-back was not assigned')
     }
 

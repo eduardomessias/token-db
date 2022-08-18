@@ -1,11 +1,14 @@
+import { IRequest } from '../../../../core/interfaces/request.interface'
+import { IValidationResult } from '../../../../core/interfaces/validationResult.interface'
 import { parseRequestBody } from '../../../../core/parse/request.parse'
 import { validateBody } from '../../../../core/validate/request.validate'
+import { NextApiRequest, NextApiResponse } from 'next'
 
 
-export default function handler(req, res) {
-    const body = req.body
-    const tokenRequest = parseRequestBody(body)
-    const validationResult = validateBody(tokenRequest)
+const handler = (req: NextApiRequest, res: NextApiResponse) => {
+    const body: Body = req.body
+    const tokenRequest: IRequest = parseRequestBody(body)
+    const validationResult: IValidationResult = validateBody(tokenRequest)
 
     if (!validationResult.isValid) {
         return res.status(400).json({ validated: validationResult.isValid, reasons: validationResult.reasons })
@@ -13,8 +16,8 @@ export default function handler(req, res) {
 
     console.log('Token request received: ', JSON.stringify(tokenRequest))
 
-    // TODO: RETRIEVE THE STATE OF THE CHAIN
-    // TODO: ENQUEUE REQUEST
+    // TODO: RETRIEVE THE CURRENT STATE OF THE CHAIN
+    // TODO: ENQUEUE REQUEST (IN IT OWN QUEUE, NOT THE BLOCKCHAIN ONE)
 
     // IF SUCCESS
     res.redirect("/token/request/confirm")
@@ -22,3 +25,6 @@ export default function handler(req, res) {
     // ELSE
     //res.status(200).json({ data: `Token request ${body.tokenRequestId} received at ${body.tokenRequestTimestamp} and added to the queue` })
 }
+
+
+export default handler
