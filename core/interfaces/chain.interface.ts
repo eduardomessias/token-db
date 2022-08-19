@@ -1,10 +1,10 @@
 import { IBlock } from "./block.interface"
-import { IRequest } from "./request.interface"
+import { IQueue } from "./queue.interface"
 
 export interface IChain {
     chain: Array<IBlock>,
     difficulty: number,
-    queue: Array<IRequest>,
+    queue: IQueue,
     reward: number,
     lastAt: Date,
     lastIndex: number,

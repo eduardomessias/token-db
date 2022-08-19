@@ -7,19 +7,21 @@ import { IRequest } from '../interfaces/request.interface'
 import { Request } from './request.class'
 import { Block } from './block.class'
 import { TokenStatus } from '../enums/tokenStatus.enum'
+import { IQueue } from '../interfaces/queue.interface'
+import { Queue } from './queue.class'
 
 export class Chain implements IChain {
     chain: Array<IBlock>
     difficulty: number
-    queue: Array<IRequest>
+    queue: IQueue
     reward: number
     lastAt: Date
     lastIndex: number
 
-    constructor(difficulty: number = 5) {
+    constructor(difficulty: number = Number(process.env.DEFAULT_CHAIN_DIFFICULTY)) {
         this.difficulty = difficulty
         this.chain = [this.createGenesis()]
-        this.queue = []
+        this.queue = new Queue()
         this.reward = 1
     }
 
@@ -38,8 +40,6 @@ export class Chain implements IChain {
     }
 
     add(t: IBlock): void {
-        t.previous = this.last().hash
-        this.mine(t)
         this.chain.push(t)
     }
 
@@ -47,27 +47,23 @@ export class Chain implements IChain {
         return this.chain.length
     }
 
+    buildTokens(): Array<IToken> {
+        let tokens: Array<IToken> = new Array<IToken>(this.queue.size())
+        while (this.queue.size() > 0) {
+            const request: IRequest = this.queue.dequeue()
+            const token: IToken = new Token(request)
+            tokens.push(token)
+        }
+        return tokens
+    }
+
     // This will be called assynchronously
     minePending() {
-        let tokens: Array<IToken> = this.queue.map((request: IRequest) => {
-            return new Token(request)
-        })
-        let block: IBlock = new Block(new Date(), tokens)
+        let block: IBlock = new Block(new Date(), this.buildTokens(), this.last().hash)
+        this.mine(block)
         this.add(block)
 
-        for (let token of block.tokens) {
-            token.status = TokenStatus.Success
-        }
-
-        this.resetQueue()
-    }
-
-    resetQueue() {
-        this.queue = []
-    }
-
-    enqueue(r: IRequest) {
-        this.queue.push(r)    
+        this.queue.reset()
     }
 
     // TODO: RETURN THE REQUEST ENQUEUE CONFIRMATION
@@ -78,11 +74,11 @@ export class Chain implements IChain {
         // BLOCK HASH = 0eff2e4f4ce2411de17895026320f790
         // BLOCK LEFT HASH = "0eff2"
         let blockLeftHash: string = t.hash.substring(0, this.difficulty)
-        
+
         // CHAIN LEFT HASH = 00000
-        let chainLeftHash: string = new Array(this.difficulty).fill("0").join("") // "00000"
-        
-        
+        let chainLeftHash: string = new Array(this.difficulty).fill("0").join("")
+
+
         while (blockLeftHash !== chainLeftHash) {
             t.nonce++
             t.hash = t.calcHash()
