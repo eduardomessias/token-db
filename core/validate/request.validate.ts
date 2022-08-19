@@ -2,7 +2,7 @@ import { createValidationResult } from "../factory/validationResult.factory"
 import { IRequest } from "../interfaces/request.interface"
 import { IValidationResult } from "../interfaces/validationResult.interface"
 
-export function validateBody(request: IRequest): IValidationResult {
+export function validateRequest(request: IRequest): IValidationResult {
     let validationResult: IValidationResult = createValidationResult()
 
     if (!request.id) {
@@ -30,7 +30,7 @@ export function validateBody(request: IRequest): IValidationResult {
         validationResult.reasons.push('Effectiveness expires was not assigned')
     }
 
-    if (!request.pushBack) {        
+    if (!request.pushBack) {
         validationResult.reasons.push('Push-back was not assigned')
     }
 

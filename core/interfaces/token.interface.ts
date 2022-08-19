@@ -7,6 +7,7 @@ export interface IToken {
     status: TokenStatus,
     isValid: boolean,
     identity: string,
+    usageCount: number,
     calcHash(): string,
     validate(): boolean
 }

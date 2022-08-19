@@ -10,11 +10,13 @@ export class Token implements IToken {
     status: TokenStatus
     isValid: boolean
     identity: string
+    usageCount: number
 
     constructor(req: IRequest) {
         this.req = req
         this.status = TokenStatus.Pending
         this.isValid = false
+        this.usageCount = 0
         this.hash = this.calcHash()
     }
 

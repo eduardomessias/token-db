@@ -7,6 +7,9 @@ export class Queue implements IQueue {
         this.reset()
     }
     enqueue(r: IRequest): number {
+        if (this.requests.includes(r)) {
+            return this.requests.length
+        }
         return this.requests.push(r)
     }
     dequeue(): IRequest {
@@ -25,6 +28,6 @@ export class Queue implements IQueue {
         this.reset()
     }
     reset(): void {
-        this.requests = new Array<IRequest>(Number(process.env.DEFAULT_QUEUE_SIZE))
+        this.requests = new Array<IRequest>()
     }
 }
